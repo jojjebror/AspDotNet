@@ -9,7 +9,7 @@ using Taharifran.Models;
 
 
 namespace Taharifran.Controllers
-{
+{   [Authorize]
     public class UserController : Controller
     {
         // GET: User
