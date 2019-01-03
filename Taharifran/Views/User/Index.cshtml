@@ -1,0 +1,15 @@
+﻿@using Taharifran.Models
+@model UserIndexViewModel
+
+<table>
+    @foreach (var user in Model.Users)
+    {
+    <tr>
+        <td>@user.Firstname</td>
+        <td>@user.Lastname</td>
+    </tr>
+    }
+</table>
+<hr />
+
+@Html.Partial("AddUserForm", new User())
