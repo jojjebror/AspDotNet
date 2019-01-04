@@ -1,0 +1,29 @@
+﻿@using Taharifran.Models
+@model UserIndexViewModel
+@{
+    ViewBag.Title = "Profile";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Profile</title>
+</head>
+<body>
+    <div>
+        <table>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Firstname</td>
+                </tr>
+                <tr>
+                    <td>@user.Lastname</td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>

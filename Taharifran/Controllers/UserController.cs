@@ -22,6 +22,16 @@ namespace Taharifran.Controllers
         };
             return View(viewModel);
         }
+
+        public ActionResult Profile()
+        {
+            var ctx = new UserDbContext();
+            var viewModel = new UserIndexViewModel
+            {
+                Users = ctx.Users.ToList()
+            };
+            return View(viewModel);
+        }
         [HttpPost]
         public ActionResult AddUser(User model)
         {
