@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "UploadImage";
+}
+
+<h2>Upload an image!</h2>
+
+@using Taharifran.Models
+@using (Html.BeginForm("UploadImage", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h3>Upload Image</h3>
+    <input type="file" name="file" value="Browse" />
+    <br />
+    <input type="submit" value="Upload" />
+}
+
+@if (ViewBag.UploadSuccess == true)
+{
+    <span>Upload Completed Successfully!</span>
+}
+
