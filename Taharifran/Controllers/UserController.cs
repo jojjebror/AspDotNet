@@ -25,6 +25,7 @@ namespace Taharifran.Controllers
 
         public ActionResult Profile()
         {
+
             var ctx = new UserDbContext();
             var viewModel = new UserIndexViewModel
             {
