@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Taharifran.Models;
 
 namespace Taharifran.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        userdbEntities db = new userdbEntities();
+
+
+        public ActionResult Index(string searching)
         {
-            return View();
+           
+            return View(db.Users.Where(x => x.Firstname.Contains(searching) || searching == null).ToList());
         }
 
         public ActionResult About()
@@ -26,5 +31,10 @@ namespace Taharifran.Controllers
 
             return View();
         }
+
+
     }
+
+    
+
 }
