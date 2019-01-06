@@ -15,7 +15,7 @@ namespace Taharifran.Controllers
         public ActionResult Index(string searching)
         {
            
-            return View(db.Users.Where(x => x.Firstname.Contains(searching) || searching == null).ToList());
+            return View(db.Users.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
 
         public ActionResult About()
