@@ -13,10 +13,10 @@ namespace Taharifran.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class userdbEntities : DbContext
+    public partial class Entities1 : DbContext
     {
-        public userdbEntities()
-            : base("name=userdbEntities")
+        public Entities1()
+            : base("name=Entities1")
         {
         }
     
@@ -25,6 +25,6 @@ namespace Taharifran.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
     }
 }

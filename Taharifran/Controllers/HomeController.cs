@@ -9,13 +9,13 @@ namespace Taharifran.Controllers
 {
     public class HomeController : Controller
     {
-        userdbEntities db = new userdbEntities();
+        Entities1 db = new Entities1();
 
 
         public ActionResult Index(string searching)
         {
            
-            return View(db.Users.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
+            return View(db.AspNetUsers.Where(x => x.UserName.StartsWith(searching) || searching == null).ToList());
         }
 
         public ActionResult About()

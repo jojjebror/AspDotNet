@@ -275,6 +275,16 @@ namespace Taharifran.Controllers
             return View(model);
         }
 
+        public ActionResult ChangeInfo(RegisterViewModel model)
+            
+        {
+            var infoContext = new ApplicationDbContext();
+            var userId = User.Identity.GetUserId();
+            var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
+            infoContext.SaveChanges();
+            return View(model);
+        }
+
         //
         // GET: /Manage/SetPassword
         public ActionResult SetPassword()
