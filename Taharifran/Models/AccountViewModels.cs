@@ -62,8 +62,20 @@ namespace Taharifran.Models
         public bool RememberMe { get; set; }
     }
 
+   
     public class RegisterViewModel
     {
+        [Required]
+        public string Firstname { get; set; }
+
+        [Required]
+        public string Lastname { get; set; }
+
+        [Required]
+        [Display(Name = "User name")]
+        public string UserName { get; set; }
+
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
