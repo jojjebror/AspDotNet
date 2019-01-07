@@ -274,13 +274,24 @@ namespace Taharifran.Controllers
             AddErrors(result);
             return View(model);
         }
-
-        public ActionResult ChangeInfo(RegisterViewModel model)
+        
+        
+        public ActionResult ChangeInfo(ChangeInfoViewModel model)
             
         {
             var infoContext = new ApplicationDbContext();
             var userId = User.Identity.GetUserId();
-            var user = UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+
+            var currentProfile = infoContext.Users.FirstOrDefault(p => p.Id == userId);
+
+            
+
+                currentProfile.Firstname = model.Firstname;
+                currentProfile.Lastname = model.Lastname;
+
+            
+
             infoContext.SaveChanges();
             return View(model);
         }
