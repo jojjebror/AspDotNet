@@ -34,8 +34,8 @@
                 foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Firstname</td>
-                        <td>@item.Lastname</td>
+                        <td><dt>@item.Firstname</dt></td>
+                        <td><dt>@item.Lastname</dt>@Html.ActionLink("Gå till profil", "Profile", "User")</td>
                     </tr>
                 }
             }
