@@ -71,9 +71,7 @@ namespace Taharifran.Models
         [Required]
         public string Lastname { get; set; }
 
-        [Required]
-        [Display(Name = "User name")]
-        public string UserName { get; set; }
+        
 
 
         [Required]
