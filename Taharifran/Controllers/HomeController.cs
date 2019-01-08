@@ -31,6 +31,22 @@ namespace Taharifran.Controllers
             return View(user);
         }
 
+        public FileContentResult otherImage(ApplicationUser userProfile)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userId = userProfile.Id;
+
+            var user = db.Users.Single(x => x.Id == userId);
+
+            
+            var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+            var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+            return new FileContentResult(userImage.UserPhoto, "image/jpeg");
+
+            
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
