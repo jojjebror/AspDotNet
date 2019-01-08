@@ -163,7 +163,8 @@ namespace Taharifran.Controllers
                         imageData = binary.ReadBytes(poImgFile.ContentLength);
                     }
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Firstname=model.Firstname, Lastname=model.Lastname };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Firstname=model.Firstname
+                    , Lastname=model.Lastname, Age = model.Age, Description=model.Description };
                 
                 //Here we pass the byte array to user context to store in db
                 user.UserPhoto = imageData;

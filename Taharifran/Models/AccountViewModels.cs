@@ -70,8 +70,16 @@ namespace Taharifran.Models
 
         [Required]
         [Display(Name = "Lastname")]
-        
         public string Lastname { get; set; }
+
+        [Required]
+        [Display(Name ="Age")]
+        public int Age { get; set; }
+
+        [Required]
+        
+        [Display(Name = "Describe yourself with one word..")]
+        public string Description { get; set; }
 
     }
 
@@ -84,13 +92,17 @@ namespace Taharifran.Models
         [Required]
         public string Lastname { get; set; }
 
+        [Required]
+        [Display(Name = "Age")]
+        public int Age { get; set; }
 
+        [Required]
+        [Display(Name = "Describe yourself with one word..")]
+        public string Description { get; set; }
         
         [Display(Name = "User Photo")]
         public byte [] UserPhoto { get; set; }
-
-
-
+        
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

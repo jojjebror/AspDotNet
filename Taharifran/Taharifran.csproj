@@ -308,7 +308,6 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\AddUserForm.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
-    <Content Include="Views\Manage\UploadImage.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
     <Content Include="Views\Home\otherProfile.cshtml" />
   </ItemGroup>

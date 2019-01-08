@@ -27,11 +27,7 @@ namespace Taharifran.Controllers
             return View(viewModel);
         }
 
-        public ActionResult ProfilePage()
-        {
-            
-            return View();
-        }
+        
 
         public ActionResult Profile()
         {
