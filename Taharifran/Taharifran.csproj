@@ -310,10 +310,11 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Manage\UploadImage.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
+    <Content Include="Views\Home\otherProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Images\" />
+    <Folder Include="Images\" />
     <Folder Include="Views\ProfilePage\" />
     <Folder Include="Views\UserPage\" />
   </ItemGroup>

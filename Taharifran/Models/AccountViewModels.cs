@@ -85,7 +85,9 @@ namespace Taharifran.Models
         public string Lastname { get; set; }
 
 
-        public string Username { get; set; }
+        [Required]
+        [Display(Name = "User Photo")]
+        public byte [] UserPhoto { get; set; }
 
 
 

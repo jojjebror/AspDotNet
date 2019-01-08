@@ -1,0 +1,49 @@
+﻿@using Taharifran.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+
+@model Taharifran.Models.ApplicationUser
+
+
+
+@{
+    ViewBag.Title = "otherProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Firstname</h2>
+
+
+<div>
+    @{
+        if (Request.IsAuthenticated)
+        {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+
+
+
+            <p><h2>@Model.Firstname @Model.Lastname's Profilsida</h2></p>
+
+            <div>
+                <img src="@Url.Action("UserPhotos", "Home" )" style="width:160px;height:160px; background: #FFFFFF;
+                        margin: auto;
+                        -moz-border-radius: 60px;
+                        border-radius: 100px;
+                        padding: 6px;
+                        box-shadow: 0px 0px 20px #888;" />
+            </div>
+
+            <dt><h2>Förnamn:</h2></dt>
+            <dd><h4>@Model.Firstname</h4></dd>
+
+            <dt><h2>Efternamn:</h2></dt>
+            <dd><h4>@Model.Lastname</h4></dd>
+
+            <dt><h2>Email:</h2></dt>
+            <dd><h4>@Model.Email</h4></dd>
+        }
+    }
+
+</div>
+

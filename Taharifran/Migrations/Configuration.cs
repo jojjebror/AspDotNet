@@ -9,7 +9,7 @@ namespace Taharifran.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
             ContextKey = "Taharifran.Models.ApplicationDbContext";
         }
 
