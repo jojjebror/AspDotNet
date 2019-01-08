@@ -279,6 +279,10 @@ namespace Taharifran.Controllers
         public ActionResult ChangeInfo(ChangeInfoViewModel model)
             
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var infoContext = new ApplicationDbContext();
             var userId = User.Identity.GetUserId();
 

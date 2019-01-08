@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,8 @@ namespace Taharifran.Controllers
 {   [Authorize]
     public class UserController : Controller
     {
+
+       
         // GET: User
         public ActionResult Index()
         {
@@ -22,6 +25,12 @@ namespace Taharifran.Controllers
                 Users = ctx.Users.ToList()
         };
             return View(viewModel);
+        }
+
+        public ActionResult ProfilePage()
+        {
+            
+            return View();
         }
 
         public ActionResult Profile()
