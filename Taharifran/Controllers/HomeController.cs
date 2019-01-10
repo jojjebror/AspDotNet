@@ -21,6 +21,8 @@ namespace Taharifran.Controllers
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
 
+        
+
         public ActionResult otherProfile(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -54,11 +56,11 @@ namespace Taharifran.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Contact(string searching)
         {
-            ViewBag.Message = "Your contact page.";
+            return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
 
-            return View();
+           
         }
 
         public FileContentResult UserPhotos()

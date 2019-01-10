@@ -1,17 +1,43 @@
-﻿@{
+﻿@model IEnumerable<Taharifran.Models.AspNetUsers>
+@using Taharifran.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
     ViewBag.Title = "Contact";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+@using (Html.BeginForm("Contact", "Home", FormMethod.Get))
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+{
+    @Html.TextBox("searching")<input type="submit" value="Search" />
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Spana in snyggingarna nedanför vetja!</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count() == 0)
+        {
+            <tr>
+                <td colspan="3" style="color:red">
+                    Sökningen gav inget resultat.
+                </td>
+            </tr>
+        }
+        else //hej
+        {
+            foreach (var item in Model)
+            {
+                <tr>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                    <td><dt>@item.UserName</dt></td>
+                    <td><dt>@item.Firstname</dt></td>
+                    <td><dt>@item.Lastname</dt></td>
+                    <td><dt>@Html.ActionLink("Gå till profil", "otherProfile", new { id = item.Id })</dt></td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
