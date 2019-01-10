@@ -5,16 +5,18 @@ using System.Web;
 
 namespace Taharifran.Models
 {
-    public class UserIndexViewModel
+
+
+    //public class TodoViewModel
+    //{
+    //    public string UserId { get; set; }
+    //    public List<TodoList> TodoLists { get; set; }
+    //}
+
+    public class ListDetailViewModel
     {
-        public List<User> Users { get; set; }
         public string UserId { get; set; }
-        public List<TodoList> TodoLists { get; set; }
-
-        
         public TodoList List { get; set; }
-
     }
 
-    
 }

@@ -27,7 +27,31 @@ namespace Taharifran.Controllers
             return View(viewModel);
         }
 
-        
+        // GET: Todo
+        public ActionResult Post()
+        {
+            var ctx = new TodoDbContext();
+            var userId = User.Identity.GetUserId();
+            return View(new UserIndexViewModel
+            {
+                UserId = userId,
+                TodoLists = ctx.TodoLists.Where(l => l.UserId == userId).ToList()
+            });
+        }
+
+        // GET: Todo/ListDetail/id
+        public ActionResult ListDetail(int id)
+        {
+            var ctx = new TodoDbContext();
+            var list = ctx.TodoLists.FirstOrDefault(l => l.Id == id);
+            return View(new ListDetailViewModel
+            {
+                UserId = User.Identity.GetUserId(),
+                List = list
+            });
+        }
+
+
 
         public ActionResult Profile()
         {

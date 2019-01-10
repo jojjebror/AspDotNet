@@ -1,0 +1,52 @@
+﻿@using Taharifran.Models
+@model Taharifran.Models.UserIndexViewModel
+
+@{
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2></h2>
+
+
+<div class="list-group">
+    @foreach (var list in Model.TodoLists)
+    {
+        <a class="list-group-item" href="/Todo/ListDetail/@list.Id">
+            @list.Name
+            <span class="badge">
+                @list.TodoItems.Count
+            </span>
+        </a>
+    }
+</div>
+<form id="add-list-form">
+    <input type="hidden" id="user-id" value="@Model.UserId" />
+    <div class="form-group">
+        <div class="input-group">
+            <input type="text" required id="new-list-name" />
+        </div>
+        <div class="input-group">
+            <button class="btn btn-success">Lägg till</button>
+        </div>
+    </div>
+</form>
+
+@section scripts {
+    <script>
+        $('#add-list-form').submit(function (ev) {
+            ev.preventDefault();
+            var userId = $('#user-id').val();
+            var newName = $('#new-list-name').val();
+            if (newName !== '') {
+                $.get(
+                    '/api/todos/list/add?userId='
+                    + userId + '&name=' + newName,
+                    function () {
+                        window.location.reload();
+                    }
+                );
+            }
+        });
+    </script>
+}

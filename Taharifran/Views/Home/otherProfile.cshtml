@@ -21,7 +21,7 @@
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var currentUser = manager.FindById(User.Identity.GetUserId());
 
-
+            
 
             <p><h2>@Model.Firstname @Model.Lastname's Profilsida</h2></p>
 
@@ -48,6 +48,8 @@
 
             <dt><h2>Email:</h2></dt>
             <dd><h4>@Model.Email</h4></dd>
+
+            <td><dt>@Html.ActionLink("Gör ett inlägg på " + @currentUser.Firstname + " 's vägg", "Post", new { id = Model.Id })</dt></td>
         }
     }
 

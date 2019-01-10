@@ -198,6 +198,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfilePageController.cs" />
+    <Compile Include="Controllers\Todo1Controller.cs" />
+    <Compile Include="Controllers\TodoApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -232,6 +234,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TodoModels.cs" />
+    <Compile Include="Models\TodoViewModels.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserDbContext.cs" />
     <Compile Include="Models\UserIndexViewModel.cs" />
@@ -318,6 +322,8 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
     <Content Include="Views\Home\otherProfile.cshtml" />
+    <Content Include="Views\Todo1\Index.cshtml" />
+    <Content Include="Views\User\Post.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
