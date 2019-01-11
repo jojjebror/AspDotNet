@@ -14,21 +14,7 @@ namespace Taharifran.Controllers
 {   [Authorize]
     public class UserController : Controller
     {
-
-       
-        // Ta bort??
-        public ActionResult Index()
-        {
-            var ctx = new UserDbContext();
-            var viewModel = new UserIndexViewModel
-            {
-                Users = ctx.Users.ToList()
-        };
-            return View(viewModel);
-        }
-
         
-
         public ActionResult otherProfile(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -42,50 +28,22 @@ namespace Taharifran.Controllers
         // GET: Todo
         public ActionResult Post()
         {
-            var ctx = new TodoDbContext();
+            var ctx = new WallPostDbContext();
             var userId = User.Identity.GetUserId();
             return View(new UserIndexViewModel
             {
                 UserId = userId,
-                TodoLists = ctx.TodoLists.Where(l => l.UserId == userId).ToList()
+                WallPostList = ctx.WallPostList.Where(l => l.UserId == userId).ToList()
             });
         }
 
-        // Ta bort?
-        public ActionResult ListDetail(int id)
-        {
-            var ctx = new TodoDbContext();
-            var list = ctx.TodoLists.FirstOrDefault(l => l.Id == id);
-            return View(new ListDetailViewModel
-            {
-                UserId = User.Identity.GetUserId(),
-                List = list
-            });
-        }
-
-
-        //Kolla om det går att ta bort koden i detta block
-        public ActionResult Profile()
+        public ActionResult ProfilePage()
         {
 
-            var ctx = new UserDbContext();
-            var viewModel = new UserIndexViewModel
-            {
-                Users = ctx.Users.ToList()
-            };
-            return View(viewModel);
+            
+            return View();
         }
-        //ta bort?
-        [HttpPost]
-        public ActionResult AddUser(User model)
-        {
-            var ctx = new UserDbContext();
-            ctx.Users.Add(model);
-            ctx.SaveChanges();
-
-            return RedirectToAction("Index");
-        }
-
+        
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
@@ -109,10 +67,6 @@ namespace Taharifran.Controllers
             return View();
         }
 
-        //Ta bort
-        public ActionResult Lasse()
-        {
-            return View();
-        }
+        
     }
 }

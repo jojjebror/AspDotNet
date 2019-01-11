@@ -197,8 +197,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\ProfilePageController.cs" />
-    <Compile Include="Controllers\Todo1Controller.cs" />
     <Compile Include="Controllers\TodoApiController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -234,10 +232,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\TodoModels.cs" />
-    <Compile Include="Models\TodoViewModels.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserDbContext.cs" />
+    <Compile Include="Models\WallPostModel.cs" />
     <Compile Include="Models\UserIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -317,19 +312,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\AddUserForm.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Manage\ChangeInfo.cshtml" />
     <Content Include="Views\Home\otherProfile.cshtml" />
-    <Content Include="Views\Todo1\Index.cshtml" />
     <Content Include="Views\User\Post.cshtml" />
     <Content Include="Views\Home\OtherPost.cshtml" />
+    <Content Include="Views\User\ProfilePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
-    <Folder Include="Views\ProfilePage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

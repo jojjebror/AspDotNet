@@ -20,10 +20,10 @@
 (new UserStore<ApplicationUser>
 (new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
-    //Ändra namn på listan i loopen 
+   
     <h2>@currentUser.Firstname's Vägg!</h2>
     <div class="list-group">
-        @foreach (var list in Model.TodoLists)
+        @foreach (var list in Model.WallPostList)
         {
             <a class="list-group-item">
                 @list.Name

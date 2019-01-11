@@ -20,18 +20,19 @@ namespace Taharifran.Controllers
            
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
+
         [Authorize]
         public ActionResult OtherPost(ApplicationUser userProfile)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var id = userProfile.Id;
-            //ändra namn på databasen TodoDbCOntext och TodoList nedanför
-                var ctx = new TodoDbContext();
+                ApplicationDbContext db = new ApplicationDbContext();
+                var id = userProfile.Id;
+            
+                var ctx = new WallPostDbContext();
 
-            return View(new UserIndexViewModel
-            {
+                return View(new UserIndexViewModel
+                {
                 UserId = id,
-                    TodoLists = ctx.TodoLists.Where(l => l.UserId == id).ToList()
+                    WallPostList = ctx.WallPostList.Where(l => l.UserId == id).ToList()
                 });
         }
 

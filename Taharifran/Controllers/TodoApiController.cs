@@ -11,13 +11,13 @@ namespace Taharifran.Controllers
     [RoutePrefix("api/todos")]
     public class TodoApiController : ApiController
     {
-        // $.get('/api/todos/list/add?userId=NN&name=asdasdas')
+        
         [Route("list/add")]
-        [HttpGet] //ändra metodnamn och db context och todolist 
-        public void AddList(string userId, string name)
+        [HttpGet] 
+        public void AddPost(string userId, string name)
         {
-            var ctx = new TodoDbContext();
-            ctx.TodoLists.Add(new TodoList
+            var ctx = new WallPostDbContext();
+            ctx.WallPostList.Add(new WallPost
             {
                 Name = name,
                 UserId = userId
@@ -25,39 +25,6 @@ namespace Taharifran.Controllers
             ctx.SaveChanges();
         }
 
-       //Ta bort hela denna metod? 
-
-        // $.get('/api/todos/item/add?listId=NN&text=asdasdas')
-        [Route("item/add")]
-        [HttpGet]
-        public void AddItem(int listId, string text)
-        {
-            var ctx = new TodoDbContext();
-            var list = ctx.TodoLists.FirstOrDefault(l => l.Id == listId);
-            if (list != null)
-            {
-                list.TodoItems.Add(new TodoItem
-                {
-                    Text = text,
-                    TodoListId = listId
-                });
-                ctx.SaveChanges();
-            }
-        }
-
-        //ta bort hela denna metod?
-        // $.get('/api/todos/item/toggle?itemId=NN')
-        [Route("item/toggle")]
-        [HttpGet]
-        public void ToggleItem(int itemId)
-        {
-            var ctx = new TodoDbContext();
-            var item = ctx.TodoItems.FirstOrDefault(i => i.Id == itemId);
-            if (item != null)
-            {
-                item.IsDone = !item.IsDone;
-                ctx.SaveChanges();
-            }
-        }
+       
     }
 }
