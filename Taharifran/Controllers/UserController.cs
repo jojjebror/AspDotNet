@@ -16,7 +16,7 @@ namespace Taharifran.Controllers
     {
 
        
-        // GET: User
+        // Ta bort??
         public ActionResult Index()
         {
             var ctx = new UserDbContext();
@@ -51,7 +51,7 @@ namespace Taharifran.Controllers
             });
         }
 
-        // GET: Todo/ListDetail/id
+        // Ta bort?
         public ActionResult ListDetail(int id)
         {
             var ctx = new TodoDbContext();
@@ -64,7 +64,7 @@ namespace Taharifran.Controllers
         }
 
 
-
+        //Kolla om det går att ta bort koden i detta block
         public ActionResult Profile()
         {
 
@@ -75,6 +75,7 @@ namespace Taharifran.Controllers
             };
             return View(viewModel);
         }
+        //ta bort?
         [HttpPost]
         public ActionResult AddUser(User model)
         {
@@ -108,6 +109,7 @@ namespace Taharifran.Controllers
             return View();
         }
 
+        //Ta bort
         public ActionResult Lasse()
         {
             return View();

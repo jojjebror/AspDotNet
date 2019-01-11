@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Taharifran.Models;
 
 namespace Taharifran.Controllers
-{
+{//Ta bort
     public class ProfilePageController : Controller
     {
 

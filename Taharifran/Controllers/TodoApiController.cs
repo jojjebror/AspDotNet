@@ -13,7 +13,7 @@ namespace Taharifran.Controllers
     {
         // $.get('/api/todos/list/add?userId=NN&name=asdasdas')
         [Route("list/add")]
-        [HttpGet]
+        [HttpGet] //ändra metodnamn och db context och todolist 
         public void AddList(string userId, string name)
         {
             var ctx = new TodoDbContext();
@@ -25,7 +25,7 @@ namespace Taharifran.Controllers
             ctx.SaveChanges();
         }
 
-       
+       //Ta bort hela denna metod? 
 
         // $.get('/api/todos/item/add?listId=NN&text=asdasdas')
         [Route("item/add")]
@@ -45,6 +45,7 @@ namespace Taharifran.Controllers
             }
         }
 
+        //ta bort hela denna metod?
         // $.get('/api/todos/item/toggle?itemId=NN')
         [Route("item/toggle")]
         [HttpGet]

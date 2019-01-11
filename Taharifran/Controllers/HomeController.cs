@@ -25,7 +25,7 @@ namespace Taharifran.Controllers
         {
             ApplicationDbContext db = new ApplicationDbContext();
             var id = userProfile.Id;
-            
+            //ändra namn på databasen TodoDbCOntext och TodoList nedanför
                 var ctx = new TodoDbContext();
 
             return View(new UserIndexViewModel

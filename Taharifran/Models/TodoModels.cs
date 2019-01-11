@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 
 namespace Taharifran.Models
-{
+{//ta bort hela klassen todoitem?
     public class TodoItem
     {
         [Key]
@@ -20,7 +20,7 @@ namespace Taharifran.Models
         // och säger att den ska referera till TodoList
         public virtual TodoList TodoList { get; set; }
     }
-
+    //byt namn på klass
     public class TodoList
     {
         [Key]
@@ -29,9 +29,7 @@ namespace Taharifran.Models
         public string Name { get; set; }
         public string UserId { get; set; }
 
-        // TodoItem har en främmande nyckel som refererar
-        // till TodoList, så därför kan Entity Framework
-        // "skjuta in" en lista på TodoItem här
+        //ta bort icollection och todolist nedanför?
         
         public virtual ICollection<TodoItem> TodoItems { get; set; }
 
@@ -42,7 +40,7 @@ namespace Taharifran.Models
 
         
     }
-
+    //byt namn på tododbcontext och listan under 
     public class TodoDbContext : DbContext
     {
         public DbSet<TodoItem> TodoItems { get; set; }
