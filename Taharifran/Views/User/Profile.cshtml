@@ -22,7 +22,7 @@
                 var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var currentUser = manager.FindById(User.Identity.GetUserId());
 
-
+                
 
                 <p><h2>@currentUser.Firstname @currentUser.Lastname's Profilsida</h2></p>
 

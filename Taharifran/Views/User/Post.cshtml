@@ -1,37 +1,49 @@
 ﻿@using Taharifran.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
 @model Taharifran.Models.UserIndexViewModel
 
 @{
-    ViewBag.Title = "Post";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+                
+                ViewBag.Title = "Post";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2></h2>
 
 
-<div class="list-group">
-    @foreach (var list in Model.TodoLists)
-    {
-        <a class="list-group-item" href="/Todo/ListDetail/@list.Id">
-            @list.Name
-            <span class="badge">
-                @list.TodoItems.Count
-            </span>
-        </a>
-    }
-</div>
-<form id="add-list-form">
-    <input type="hidden" id="user-id" value="@Model.UserId" />
-    <div class="form-group">
-        <div class="input-group">
-            <input type="text" required id="new-list-name" />
-        </div>
-        <div class="input-group">
-            <button class="btn btn-success">Lägg till</button>
-        </div>
-    </div>
-</form>
 
+@if (Request.IsAuthenticated)
+{
+    var manager = new UserManager<ApplicationUser>
+(new UserStore<ApplicationUser>
+(new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+
+    <h2>@currentUser.Firstname's Vägg!</h2>
+    <div class="list-group">
+        @foreach (var list in Model.TodoLists)
+        {
+            <a class="list-group-item">
+                @list.Name
+               Skrivet av @currentUser.Firstname 
+
+            </a>
+        }
+    </div>
+    <form id="add-list-form">
+        <input type="hidden" id="user-id" value="@Model.UserId" />
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" required id="new-list-name" />
+            </div>
+            <div class="input-group">
+                <button class="btn btn-success">Lägg till</button>
+            </div>
+        </div>
+    </form>
+}
 @section scripts {
     <script>
         $('#add-list-form').submit(function (ev) {

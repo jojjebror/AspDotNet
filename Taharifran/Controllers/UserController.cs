@@ -27,6 +27,18 @@ namespace Taharifran.Controllers
             return View(viewModel);
         }
 
+        
+
+        public ActionResult otherProfile(ApplicationUser userProfile)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userId = userProfile.Id;
+
+            var user = db.Users.Single(x => x.Id == userId);
+
+            return View(user);
+        }
+
         // GET: Todo
         public ActionResult Post()
         {

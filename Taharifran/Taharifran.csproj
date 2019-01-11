@@ -324,12 +324,12 @@
     <Content Include="Views\Home\otherProfile.cshtml" />
     <Content Include="Views\Todo1\Index.cshtml" />
     <Content Include="Views\User\Post.cshtml" />
+    <Content Include="Views\Home\OtherPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\" />
     <Folder Include="Views\ProfilePage\" />
-    <Folder Include="Views\UserPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

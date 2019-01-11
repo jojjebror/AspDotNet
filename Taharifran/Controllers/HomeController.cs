@@ -21,7 +21,18 @@ namespace Taharifran.Controllers
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
 
-        
+        public ActionResult OtherPost(ApplicationUser userProfile)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            var userId = userProfile.Id;
+
+            var user = db.Users.Single(x => x.Id == userId);
+
+            return View(user);
+        }
+
+
+
 
         public ActionResult otherProfile(ApplicationUser userProfile)
         {

@@ -32,6 +32,7 @@ namespace Taharifran.Models
         // TodoItem har en främmande nyckel som refererar
         // till TodoList, så därför kan Entity Framework
         // "skjuta in" en lista på TodoItem här
+        
         public virtual ICollection<TodoItem> TodoItems { get; set; }
 
         public TodoList()
@@ -46,6 +47,7 @@ namespace Taharifran.Models
     {
         public DbSet<TodoItem> TodoItems { get; set; }
         public DbSet<TodoList> TodoLists { get; set; }
+        
 
         public TodoDbContext() : base("TodoDb") { }
     }
