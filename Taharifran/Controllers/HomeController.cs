@@ -24,16 +24,20 @@ namespace Taharifran.Controllers
         public ActionResult OtherPost(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var userId = userProfile.Id;
+            var id = userProfile.Id;
+            
+                var ctx = new TodoDbContext();
 
-            var user = db.Users.Single(x => x.Id == userId);
-
-            return View(user);
+            return View(new UserIndexViewModel
+            {
+                UserId = id,
+                    TodoLists = ctx.TodoLists.Where(l => l.UserId == id).ToList()
+                });
         }
 
 
 
-
+        [Authorize]
         public ActionResult otherProfile(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
