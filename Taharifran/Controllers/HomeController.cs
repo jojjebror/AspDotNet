@@ -20,7 +20,7 @@ namespace Taharifran.Controllers
            
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
-
+        [Authorize]
         public ActionResult OtherPost(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
