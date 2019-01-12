@@ -1,7 +1,7 @@
 ﻿@using Taharifran.Models
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
-@model Taharifran.Models.UserIndexViewModel
+@model Taharifran.Models.ProfileViewModel
 
 @{
     ViewBag.Title = "ProfilePage";
@@ -20,12 +20,8 @@
         @{
             if (Request.IsAuthenticated)
             {
-                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                var currentUser = manager.FindById(User.Identity.GetUserId());
 
-
-
-                <p><h2>@currentUser.Firstname @currentUser.Lastname's Profilsida</h2></p>
+                <p><h2>@Model.User.Firstname @Model.User.Lastname's Profilsida</h2></p>
 
                 <div>
                     <img src="@Url.Action("UserPhotos", "Home" )" style="width:160px;height:160px; background: #FFFFFF;
@@ -37,21 +33,32 @@
                 </div>
 
                 <dt><h2>Förnamn:</h2></dt>
-                <dd><h4>@currentUser.Firstname</h4></dd>
+                <dd><h4>@Model.User.Firstname</h4></dd>
 
                 <dt><h2>Efternamn:</h2></dt>
-                <dd><h4>@currentUser.Lastname</h4></dd>
+                <dd><h4>@Model.User.Lastname</h4></dd>
 
                 <dt><h2>Age:</h2></dt>
-                <dd><h4>@currentUser.Age</h4></dd>
+                <dd><h4>@Model.User.Age</h4></dd>
 
                 <dt><h2>Description:</h2></dt>
-                <dd><h4>@currentUser.Description</h4></dd>
+                <dd><h4>@Model.User.Description</h4></dd>
 
                 <dt><h2>Email:</h2></dt>
-                <dd><h4>@currentUser.Email</h4></dd>
+                <dd><h4>@Model.User.Email</h4></dd>
 
                 <td><dt>@Html.ActionLink("Min vägg", "Post")</dt></td>
+
+
+                <div>
+                    Friends:
+                    <ul>
+                        @foreach (var friends in Model.Friends)
+                        {
+                        <li>@friends.Firstname</li>
+                        }
+                    </ul>
+                </div>
             }
         }
 

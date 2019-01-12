@@ -44,6 +44,7 @@ namespace Taharifran.Models
         public string Reciever { get; set; }
         public string Sender { get; set; }
         public DateTime Date { get; set; }
+        public bool Accepted { get; set; }
 
     }
 

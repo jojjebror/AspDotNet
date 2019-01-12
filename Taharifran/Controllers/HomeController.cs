@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -37,15 +38,21 @@ namespace Taharifran.Controllers
         }
 
         [Authorize]
-        public ActionResult FriendRequests(ApplicationUser userProfile)
+        public ActionResult FriendRequests()
         {
-            var id = userProfile.Id;
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            var id = currentUser.Id;
 
             var ctx = new ApplicationDbContext();
+            var requests = ctx.FriendRequests.Where(x => x.Reciever == id && x.Accepted == false).ToList();
 
-            var requests = ctx.FriendRequests.Where(x => x.Reciever == id).ToList();
-
-            var usersThatSentFriendRequest = ctx.Users.Where(x => requests.Any(z => z.Sender == x.Id )).ToList();
+            var usersThatSentFriendRequest = new List<ApplicationUser>();
+            foreach (var request in requests)
+            {
+                var user = ctx.Users.FirstOrDefault(x => x.Id == request.Sender);
+                usersThatSentFriendRequest.Add(user);
+            }
 
             return View(new FriendRequestViewModel
             {

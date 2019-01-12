@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -39,9 +40,24 @@ namespace Taharifran.Controllers
 
         public ActionResult ProfilePage()
         {
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var currentUser = manager.FindById(User.Identity.GetUserId());
+            var ctx = new ApplicationDbContext();
 
-            
-            return View();
+            var requests = ctx.FriendRequests.Where(x => x.Reciever == currentUser.Id && x.Accepted == true).ToList();
+
+            var friends = new List<ApplicationUser>();
+            foreach (var request in requests)
+            {
+                var user = ctx.Users.FirstOrDefault(x => x.Id == request.Sender);
+                friends.Add(user);
+            }
+
+            return View(new ProfileViewModel
+            {
+                Friends = friends,
+                User = currentUser
+            });
         }
         
         [HttpPost]

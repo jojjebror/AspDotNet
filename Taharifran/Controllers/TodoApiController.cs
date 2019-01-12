@@ -33,6 +33,11 @@ namespace Taharifran.Controllers
             {
                 var ctx = new ApplicationDbContext();
 
+                if(ctx.FriendRequests.Any(x => x.Sender == sender && x.Reciever == reciever))
+                {
+                    return BadRequest("Friend request already exist");
+                }
+
                 ctx.FriendRequests.Add(new FriendRequest
                 {
                     Reciever = reciever,
@@ -59,16 +64,16 @@ namespace Taharifran.Controllers
             {
                 var ctx = new ApplicationDbContext();
 
-                //ctx.FriendRequests.Add(new FriendRequest
-                //{
-                //    Reciever = reciever,
-                //    Sender = sender,
-                //    Date = DateTime.Now
-                //});
+                var friendRequest = ctx.FriendRequests.FirstOrDefault(x => x.Sender == sender && x.Reciever == reciever);
+
+                if (friendRequest != null)
+                {
+                    friendRequest.Accepted = true;
+                }
 
                 ctx.SaveChanges();
 
-                return Ok();
+                return Json(friendRequest);
             }
             catch (Exception)
             {
@@ -85,7 +90,7 @@ namespace Taharifran.Controllers
             try
             {
                 var ctx = new ApplicationDbContext();
-                var requests = ctx.FriendRequests.Where(x => x.Reciever == userId);
+                var requests = ctx.FriendRequests.Where(x => x.Reciever == userId && x.Accepted == false);
 
                 return Json(requests.ToList());
             }
