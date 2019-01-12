@@ -41,7 +41,8 @@
 
                     <li>@Html.ActionLink("Profile", "ProfilePage", "User")</li>
                     <li>
-                        @Html.ActionLink("Friendrequests", "FriendRequests", "Home"): <a id="friend-requests">0</a>
+                        @Html.ActionLink("Friendrequests: ", "FriendRequests", "Home", new { @style = "float:left; padding-right:0;" }) <span id="friend-requests" style="float:left;color:#9d9d9d;padding-left: 10px;padding-top: 15px; padding-right:15px;
+    padding-bottom: 15px;">: 0</span>
                     </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
