@@ -32,6 +32,8 @@
                         box-shadow: 0px 0px 20px #888;" />
                 </div>
 
+                <div>
+
                 <dt><h2>Förnamn:</h2></dt>
                 <dd><h4>@Model.User.Firstname</h4></dd>
 
@@ -50,14 +52,13 @@
                 <td><dt>@Html.ActionLink("Min vägg", "Post")</dt></td>
 
 
-                <div>
-                    Friends:
-                    <ul>
+                
+                    <td><h2>Friends:</h2></td>
                         @foreach (var friends in Model.Friends)
                         {
-                        <li>@friends.Firstname</li>
+                        <h4><li>@friends.Firstname @friends.Lastname</li></h4>
                         }
-                    </ul>
+                    
                 </div>
             }
         }
