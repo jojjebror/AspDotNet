@@ -1,0 +1,40 @@
+﻿@model Taharifran.Models.FriendRequestViewModel
+@using Taharifran.Models
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNet.Identity.EntityFramework;
+@{
+    ViewBag.Title = "OtherPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var userId = "";
+    if (Request.IsAuthenticated)
+    {
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+        userId = currentUser.Id;
+    }
+
+}
+
+<h2>FriendRequests:</h2>
+
+<ul id="friend-requests-list"></ul>
+
+
+@section scripts {
+    <script>
+        var list = $('#friend-requests-list');
+
+     $('.accept-friend-request').on('click', function (ev) {
+            ev.preventDefault();
+            var sender = '';
+            var reciever = '@userId';
+            $.post('/api/todos/acceptrequest?sender=' + sender + '&reciever=' + reciever,
+                function (data) {
+                        console.log(data)
+                    }
+                )
+        });
+
+    </script>
+}

@@ -210,6 +210,18 @@
     <Compile Include="Migrations\201901061559392_Tahariran.Models.ApplicationDbContext.Designer.cs">
       <DependentUpon>201901061559392_Tahariran.Models.ApplicationDbContext.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901120934070_FriendRequests.cs" />
+    <Compile Include="Migrations\201901120934070_FriendRequests.Designer.cs">
+      <DependentUpon>201901120934070_FriendRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901120956359_FriendRequest2.cs" />
+    <Compile Include="Migrations\201901120956359_FriendRequest2.Designer.cs">
+      <DependentUpon>201901120956359_FriendRequest2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901121006024_Date in FriendRequest.cs" />
+    <Compile Include="Migrations\201901121006024_Date in FriendRequest.Designer.cs">
+      <DependentUpon>201901121006024_Date in FriendRequest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetUsers.cs">
@@ -232,6 +244,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FriendRequestViewModel.cs" />
     <Compile Include="Models\WallPostModel.cs" />
     <Compile Include="Models\UserIndexViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -317,6 +330,7 @@
     <Content Include="Views\User\Post.cshtml" />
     <Content Include="Views\Home\OtherPost.cshtml" />
     <Content Include="Views\User\ProfilePage.cshtml" />
+    <Content Include="Views\Home\FriendRequests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +358,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901061559392_Tahariran.Models.ApplicationDbContext.resx">
       <DependentUpon>201901061559392_Tahariran.Models.ApplicationDbContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901120934070_FriendRequests.resx">
+      <DependentUpon>201901120934070_FriendRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901120956359_FriendRequest2.resx">
+      <DependentUpon>201901120956359_FriendRequest2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901121006024_Date in FriendRequest.resx">
+      <DependentUpon>201901121006024_Date in FriendRequest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

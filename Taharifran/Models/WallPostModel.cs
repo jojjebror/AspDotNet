@@ -40,13 +40,10 @@ namespace Taharifran.Models
 
 
     }
-
     public class WallPostDbContext : DbContext
     {
         public DbSet<WallItem> WallItem { get; set; }
         public DbSet<WallPost> WallPostList { get; set; }
-        
-
         public WallPostDbContext() : base("TodoDb") { }
     }
 }

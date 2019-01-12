@@ -36,7 +36,22 @@ namespace Taharifran.Controllers
                 });
         }
 
+        [Authorize]
+        public ActionResult FriendRequests(ApplicationUser userProfile)
+        {
+            var id = userProfile.Id;
 
+            var ctx = new ApplicationDbContext();
+
+            var requests = ctx.FriendRequests.Where(x => x.Reciever == id).ToList();
+
+            var usersThatSentFriendRequest = ctx.Users.Where(x => requests.Any(z => z.Sender == x.Id )).ToList();
+
+            return View(new FriendRequestViewModel
+            {
+                FriendRequests = usersThatSentFriendRequest
+            });
+        }
 
         [Authorize]
         public ActionResult otherProfile(ApplicationUser userProfile)

@@ -1,63 +1,70 @@
 ﻿@using Taharifran.Models
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
-
 @model Taharifran.Models.ApplicationUser
-
-
-
 @{
     ViewBag.Title = "otherProfile";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var userId = "";
+    if (Request.IsAuthenticated)
+    {
+        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        var currentUser = manager.FindById(User.Identity.GetUserId());
+        userId = currentUser.Id;
+    }
 }
-
-
-
-
 <div>
-    @{
-        if (Request.IsAuthenticated)
-        {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
 
-            
 
-            <p><h2>@Model.Firstname @Model.Lastname's Profilsida</h2></p>
+    <p><h2>@Model.Firstname @Model.Lastname's Profilsida</h2></p>
 
-            <div>
-                <img src="@Url.Action("otherImage", "Home", new {id = Model.Id })" style="width:160px;height:160px; background: #FFFFFF;
+    <div>
+        <img src="@Url.Action("otherImage", "Home", new {id = Model.Id })" style="width:160px;height:160px; background: #FFFFFF;
                         margin: auto;
                         -moz-border-radius: 60px;
                         border-radius: 100px;
                         padding: 6px;
                         box-shadow: 0px 0px 20px #888;" />
-            </div>
+    </div>
 
-            
 
-            <dt><h2>Förnamn:</h2></dt>
-            <dd><h4>@Model.Firstname</h4></dd>
 
-            <dt><h2>Efternamn:</h2></dt>
-            <dd><h4>@Model.Lastname</h4></dd>
+    <dt><h2>Förnamn:</h2></dt>
+    <dd><h4>@Model.Firstname</h4></dd>
 
-            <dt><h2>Age:</h2></dt>
-            <dd><h4>@Model.Age</h4></dd>
+    <dt><h2>Efternamn:</h2></dt>
+    <dd><h4>@Model.Lastname</h4></dd>
 
-            <dt><h2>Description:</h2></dt>
-            <dd><h4>@Model.Description</h4></dd>
+    <dt><h2>Age:</h2></dt>
+    <dd><h4>@Model.Age</h4></dd>
 
-            <dt><h2>Email:</h2></dt>
-            <dd><h4>@Model.Email</h4></dd>
+    <dt><h2>Description:</h2></dt>
+    <dd><h4>@Model.Description</h4></dd>
 
-            <td><dt>@Html.ActionLink("Gör ett inlägg på " + Model.Firstname + " 's vägg", "OtherPost", new { id = Model.Id })</dt></td>
-        }
-        else
-        {
-            
-        }
-    }
+    <dt><h2>Email:</h2></dt>
+    <dd><h4>@Model.Email</h4></dd>
+
+    <td><dt>@Html.ActionLink("Gör ett inlägg på " + Model.Firstname + " 's vägg", "OtherPost", new { id = Model.Id })</dt></td>
+
+
+
+    <button id="send-friend-request" type="button" class="btn btn-success">Lägg till vän</button>
 
 </div>
+
+@section scripts {
+    <script>
+        $('#send-friend-request').on('click', function (ev) {
+            ev.preventDefault();
+            var sender = '@userId';
+            var reciever = '@Model.Id';
+            $.post('/api/todos/friendrequests/add?sender=' + sender + '&reciever=' + reciever,
+                function (data) {
+                        console.log(data)
+                    }
+                )
+        });
+    </script>
+}
+
 
