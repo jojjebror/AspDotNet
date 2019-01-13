@@ -15,7 +15,7 @@ namespace Taharifran.Controllers
 {   [Authorize]
     public class UserController : Controller
     {
-        
+        //gets id for other users profile from db
         public ActionResult otherProfile(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -26,7 +26,7 @@ namespace Taharifran.Controllers
             return View(user);
         }
 
-        // GET: Todo
+        //matches the id from wallpostdbcontext to the currently logged in id 
         public ActionResult Post()
         {
             var ctx = new WallPostDbContext();
@@ -37,7 +37,9 @@ namespace Taharifran.Controllers
                 WallPostList = ctx.WallPostList.Where(l => l.UserId == userId).ToList()
             });
         }
-
+        //gets id for the currently logged in user 
+        //finds where the receiver id and the user id matches and the accepted equals true and adds it to a list
+        //also where the sender id and the user id matches and adds it to a lsit
         public ActionResult ProfilePage()
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
@@ -45,12 +47,24 @@ namespace Taharifran.Controllers
             var ctx = new ApplicationDbContext();
 
             var requests = ctx.FriendRequests.Where(x => x.Reciever == currentUser.Id && x.Accepted == true).ToList();
-
+            var requests2 = ctx.FriendRequests.Where(x => x.Sender == currentUser.Id && x.Accepted == true).ToList();
             var friends = new List<ApplicationUser>();
             foreach (var request in requests)
             {
                 var user = ctx.Users.FirstOrDefault(x => x.Id == request.Sender);
+
                 friends.Add(user);
+
+                
+            }
+
+            foreach (var request in requests2)
+            {
+                var user2 = ctx.Users.FirstOrDefault(x => x.Id == request.Reciever);
+
+                friends.Add(user2);
+
+
             }
 
             return View(new ProfileViewModel
@@ -60,29 +74,8 @@ namespace Taharifran.Controllers
             });
         }
         
-        [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
-        {
-            var path = "";
-            if (file != null)
-            {
-                if (file.ContentLength > 0)
-                {
-                    if (Path.GetExtension(file.FileName).ToLower() == ".jpg" ||
-                        Path.GetExtension(file.FileName).ToLower() == ".png" ||
-                             Path.GetExtension(file.FileName).ToLower() == ".gif" ||
-                                Path.GetExtension(file.FileName).ToLower() == ".jpeg")
-                    {
-                        path = Path.Combine(Server.MapPath("~/Content/Images"), file.FileName);
-                        file.SaveAs(path);
-                        ViewBag.UploadSuccess = true;
-                    }
-                }
-            }
-
-            return View();
-        }
-
         
+
+
     }
 }

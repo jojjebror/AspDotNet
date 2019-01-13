@@ -2,8 +2,10 @@
 @using Taharifran.Models
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
+
+
 @{
-    ViewBag.Title = "OtherPost";
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var userId = "";
@@ -14,9 +16,17 @@
         userId = currentUser.Id;
     }
 
+
 }
+<br />
+<br />
+<br />
 
 <h2>FriendRequests:</h2>
+
+
+
+
 
 <ul id="friend-requests-list">
     @foreach (var friendRequest in Model.FriendRequests)
@@ -25,13 +35,13 @@
     }
 </ul>
 
-
+@*script for accepting friendrequest. Retrieves data from the apicontroller*@
 @section scripts {
     <script>
         function accept(button){
             var sender = $(button).data('id');
             var reciever = '@userId';
-            $.post('/api/todos/acceptrequest?sender=' + sender + '&reciever=' + reciever,
+            $.post('/api/controller/acceptrequest?sender=' + sender + '&reciever=' + reciever,
                 function (data) {
                     window.location.reload();
                 }

@@ -15,12 +15,12 @@ namespace Taharifran.Models
         public string Text { get; set; }
         public bool IsDone { get; set; }
 
-        
+
         public int TodoListId { get; set; }
-        
+
         public virtual WallPost WallPost { get; set; }
     }
-    
+
     public class WallPost
     {
         [Key]

@@ -3,17 +3,27 @@
 @using Microsoft.AspNet.Identity;
 @using Microsoft.AspNet.Identity.EntityFramework;
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Home";
 }
-@using (Html.BeginForm("Contact", "Home", FormMethod.Get))
 
+
+
+
+
+<br />
+<br />
+<br />
+
+
+
+@using (Html.BeginForm("Search", "Home", FormMethod.Get))
 {
     @Html.TextBox("searching")<input type="submit" value="Search" />
 }
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Spana in snyggingarna nedanför vetja!</th>
+            <th>People using our service</th>
         </tr>
     </thead>
     <tbody>
@@ -25,16 +35,16 @@
                 </td>
             </tr>
         }
-        else //hej
+        else
         {
             foreach (var item in Model)
             {
                 <tr>
 
-                    
+
                     <td><dt>@item.Firstname</dt></td>
                     <td><dt>@item.Lastname</dt></td>
-                    <td><dt>@Html.ActionLink("Gå till profil", "otherProfile", new { id = item.Id })</dt></td>
+                    <td><dt>@Html.ActionLink("Go to profilepage", "otherProfile", new { id = item.Id })</dt></td>
                 </tr>
             }
         }

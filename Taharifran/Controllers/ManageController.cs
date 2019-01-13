@@ -117,7 +117,7 @@ namespace Taharifran.Controllers
             return View(model);
         }
         
-        
+        //finds the id for the currently logged in user. sets the account information of the user according to the model (changeinfoviewmodel)
         public ActionResult ChangeInfo(ChangeInfoViewModel model)
             
         {

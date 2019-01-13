@@ -65,10 +65,12 @@ namespace Taharifran.Models
     public class ChangeInfoViewModel
     {
         [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid Firstname, use letters A-Z")]
         [Display(Name="Firstname")]
         public string Firstname { get; set; }
 
         [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid Lastname, use letters A-Z")]
         [Display(Name = "Lastname")]
         public string Lastname { get; set; }
 
@@ -77,7 +79,7 @@ namespace Taharifran.Models
         public int Age { get; set; }
 
         [Required]
-        
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid, use letters A-Z")]
         [Display(Name = "Describe yourself with one word..")]
         public string Description { get; set; }
 
@@ -87,9 +89,11 @@ namespace Taharifran.Models
     public class RegisterViewModel
     {
         [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid Firstname, use letters A-Z")]
         public string Firstname { get; set; }
 
         [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid Lastname, use letters A-Z")]
         public string Lastname { get; set; }
 
         [Required]
@@ -97,6 +101,7 @@ namespace Taharifran.Models
         public int Age { get; set; }
 
         [Required]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z'\s]*$", ErrorMessage = "Invalid, use letters A-Z")]
         [Display(Name = "Describe yourself with one word..")]
         public string Description { get; set; }
         

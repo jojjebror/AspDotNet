@@ -4,13 +4,15 @@
 @model Taharifran.Models.UserIndexViewModel
 
 @{
-                /**/
-                
-                ViewBag.Title = "Post";
-                Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    /**/
 
-<h2></h2>
+    ViewBag.Title = "Post";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+
 
 
 
@@ -20,14 +22,14 @@
 (new UserStore<ApplicationUser>
 (new ApplicationDbContext()));
     var currentUser = manager.FindById(User.Identity.GetUserId());
-   
-    <h2>@currentUser.Firstname's Vägg!</h2>
+
+    <h2>@currentUser.Firstname's Wall!</h2>
     <div class="list-group">
         @foreach (var list in Model.WallPostList)
         {
             <a class="list-group-item">
                 @list.Name
-               
+
 
             </a>
         }
@@ -44,6 +46,7 @@
         </div>
     </form>
 }
+@*script for posting on own wall*@
 @section scripts {
     <script>
         $('#add-list-form').submit(function (ev) {
@@ -52,7 +55,7 @@
             var newName = $('#new-list-name').val();
             if (newName !== '') {
                 $.get(
-                    '/api/todos/list/add?userId='
+                    '/api/controller/list/add?userId='
                     + userId + '&name=' + newName,
                     function () {
                         window.location.reload();

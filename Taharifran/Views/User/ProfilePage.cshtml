@@ -7,7 +7,9 @@
     ViewBag.Title = "ProfilePage";
 }
 
-
+<br />
+<br />
+<br />
 <!DOCTYPE html>
 
 <html>
@@ -21,7 +23,7 @@
             if (Request.IsAuthenticated)
             {
 
-                <p><h2>@Model.User.Firstname @Model.User.Lastname's Profilsida</h2></p>
+                <p><h2>@Model.User.Firstname @Model.User.Lastname's Profilepage</h2></p>
 
                 <div>
                     <img src="@Url.Action("UserPhotos", "Home" )" style="width:160px;height:160px; background: #FFFFFF;
@@ -34,31 +36,32 @@
 
                 <div>
 
-                <dt><h2>Förnamn:</h2></dt>
-                <dd><h4>@Model.User.Firstname</h4></dd>
+                    <dt><h2>Firstname:</h2></dt>
+                    <dd><h4>@Model.User.Firstname</h4></dd>
 
-                <dt><h2>Efternamn:</h2></dt>
-                <dd><h4>@Model.User.Lastname</h4></dd>
+                    <dt><h2>Lastname:</h2></dt>
+                    <dd><h4>@Model.User.Lastname</h4></dd>
 
-                <dt><h2>Age:</h2></dt>
-                <dd><h4>@Model.User.Age</h4></dd>
+                    <dt><h2>Age:</h2></dt>
+                    <dd><h4>@Model.User.Age</h4></dd>
 
-                <dt><h2>Description:</h2></dt>
-                <dd><h4>@Model.User.Description</h4></dd>
+                    <dt><h2>Description:</h2></dt>
+                    <dd><h4>@Model.User.Description</h4></dd>
 
-                <dt><h2>Email:</h2></dt>
-                <dd><h4>@Model.User.Email</h4></dd>
+                    <dt><h2>Email:</h2></dt>
+                    <dd><h4>@Model.User.Email</h4></dd>
 
-                <td><dt>@Html.ActionLink("Min vägg", "Post")</dt></td>
+                    <td><dt><h2>@Html.ActionLink("Go to my wall", "Post")</h2></dt></td>
 
 
-                
+
                     <td><h2>Friends:</h2></td>
-                        @foreach (var friends in Model.Friends)
-                        {
-                        <h4><li>@friends.Firstname @friends.Lastname</li></h4>
-                        }
-                    
+                    @foreach (var friends in Model.Friends)
+                    {
+                        <h4><li>@friends.Firstname @friends.Lastname </li></h4>
+                       
+                    }
+
                 </div>
             }
         }

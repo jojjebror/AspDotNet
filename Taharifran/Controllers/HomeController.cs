@@ -15,13 +15,13 @@ namespace Taharifran.Controllers
     {
         Entities1 db = new Entities1();
 
-
+        
         public ActionResult Index(string searching)
         {
            
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
         }
-
+        //Here we fetch the neccessary ids for the view
         [Authorize]
         public ActionResult OtherPost(ApplicationUser userProfile)
         {
@@ -37,6 +37,7 @@ namespace Taharifran.Controllers
                 });
         }
 
+        //here we fetch the neccesary ids for receiver and sender from the table and add it to a list
         [Authorize]
         public ActionResult FriendRequests()
         {
@@ -60,6 +61,7 @@ namespace Taharifran.Controllers
             });
         }
 
+        //here we fetch the ids for other users to load their information to their profilepage 
         [Authorize]
         public ActionResult otherProfile(ApplicationUser userProfile)
         {
@@ -71,6 +73,7 @@ namespace Taharifran.Controllers
             return View(user);
         }
 
+        //here we fetch the id for other users to get their profilepicture on their profilpage
         public FileContentResult otherImage(ApplicationUser userProfile)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -87,6 +90,8 @@ namespace Taharifran.Controllers
             
         }
 
+        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -94,13 +99,18 @@ namespace Taharifran.Controllers
             return View();
         }
 
-        public ActionResult Contact(string searching)
+        //Here we create a search function which takes one parameter as searchvalue. It returns user if found in the database (Using startswith)
+        [Authorize]
+        public ActionResult Search(string searching)
         {
             return View(db.AspNetUsers.Where(x => x.Firstname.StartsWith(searching) || searching == null).ToList());
 
            
         }
 
+
+        //first we check if the user is authenticated, if not, it will show a default user image.
+        //else it will allow you to upload a own image from your library
         public FileContentResult UserPhotos()
         {
             if (User.Identity.IsAuthenticated)
@@ -121,7 +131,7 @@ namespace Taharifran.Controllers
                     return File(imageData, "image/png");
 
                 }
-                // to get the user details to load user Image
+                // here we get the user details to load user's Image
                 var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
                 var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
 

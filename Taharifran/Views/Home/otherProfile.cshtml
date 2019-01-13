@@ -13,10 +13,14 @@
         userId = currentUser.Id;
     }
 }
+
+<br />
+<br />
+<br />
 <div>
 
 
-    <p><h2>@Model.Firstname @Model.Lastname's Profilsida</h2></p>
+    <p><h2>@Model.Firstname @Model.Lastname's Profilepage</h2></p>
 
     <div>
         <img src="@Url.Action("otherImage", "Home", new {id = Model.Id })" style="width:160px;height:160px; background: #FFFFFF;
@@ -29,10 +33,10 @@
 
 
 
-    <dt><h2>Förnamn:</h2></dt>
+    <dt><h2>Firstname:</h2></dt>
     <dd><h4>@Model.Firstname</h4></dd>
 
-    <dt><h2>Efternamn:</h2></dt>
+    <dt><h2>Lastname:</h2></dt>
     <dd><h4>@Model.Lastname</h4></dd>
 
     <dt><h2>Age:</h2></dt>
@@ -44,25 +48,31 @@
     <dt><h2>Email:</h2></dt>
     <dd><h4>@Model.Email</h4></dd>
 
-    <td><dt>@Html.ActionLink("Gör ett inlägg på " + Model.Firstname + " 's vägg", "OtherPost", new { id = Model.Id })</dt></td>
+    <td><dt><h2>@Html.ActionLink("Post on " + Model.Firstname + " 's wall", "OtherPost", new { id = Model.Id })</h2></dt></td>
 
 
 
-    <button id="send-friend-request" type="button" class="btn btn-success">Lägg till vän</button>
+    <button id="send-friend-request" type="button"  class="btn btn-success"  >Add friend</button>
+    
 
 </div>
-
+@*script for sending friendrequest*@
 @section scripts {
     <script>
         $('#send-friend-request').on('click', function (ev) {
             ev.preventDefault();
             var sender = '@userId';
             var reciever = '@Model.Id';
-            $.post('/api/todos/friendrequests/add?sender=' + sender + '&reciever=' + reciever,
+            $.post('/api/controller/friendrequests/add?sender=' + sender + '&reciever=' + reciever,
                 function (data) {
                         console.log(data)
                     }
                 )
+        });
+
+        $("#send-friend-request").click(function () {
+            $(this).attr("disabled", "disabled");
+            $("#unbind").removeAttr("disabled");
         });
     </script>
 }

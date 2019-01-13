@@ -7,58 +7,58 @@
 @using Microsoft.AspNet.Identity.EntityFramework;
 
 
-        @{var manager = new UserManager<ApplicationUser>
-  (new UserStore<ApplicationUser>
-        (new ApplicationDbContext()));
-            var currentUser = manager.FindById(User.Identity.GetUserId());
-        }
+@{var manager = new UserManager<ApplicationUser>
+(new UserStore<ApplicationUser>
+  (new ApplicationDbContext()));
+    var currentUser = manager.FindById(User.Identity.GetUserId());
+}
 
+<br />
+<br />
+<br />
+<div class="jumbotron">
 
-        <div class="jumbotron">
-            
-            <img src="@Url.Action("UserPhotos", "Home")" style="width:160px;height:160px; background: #FFFFFF;
+    <img src="@Url.Action("UserPhotos", "Home")" style="width:160px;height:160px; background: #FFFFFF;
             margin: auto;
             -moz-border-radius: 60px;
             border-radius: 100px;
             padding: 6px;
             box-shadow: 0px 0px 20px #888;" />
-            
-            @{if (Request.IsAuthenticated)
-                {
-                    <h3>Välkommen tillbaka @currentUser.Firstname!</h3>
 
-                } 
-              
-             }
-            
+    @{if (Request.IsAuthenticated)
+        {
+            <h3>Welcome back @currentUser.Firstname!</h3>
 
-        </div>
-        
+        }
 
-        <br /> <br />
+    }
 
-        @using (Html.BeginForm("Index", "Home", FormMethod.Get))
-        { }
 
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                
-                    @foreach (var item in Model)
-                    {
-                        <tr>
+</div>
 
-                            
-                            <td><dt>@item.Firstname</dt></td>
-                            <td><dt>@item.Lastname</dt></td>
-                            <td><dt>@Html.ActionLink("Gå till profil", "otherProfile", new {id=item.Id })</dt></td>
-                        </tr>
-                    }
-               
-            </tbody>
 
-        </table>
+<br /> <br />
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+{ }
+
+<table class="table table-striped">
+    <thead>
+        <tr></tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td><dt>@item.Firstname</dt></td>
+                <td><dt>@item.Lastname</dt></td>
+                <td><dt>@Html.ActionLink("Go to profilepage", "otherProfile", new { id = item.Id })</dt></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>

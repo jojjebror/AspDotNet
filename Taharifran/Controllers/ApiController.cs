@@ -8,10 +8,13 @@ using Taharifran.Models;
 
 namespace Taharifran.Controllers
 {
-    [RoutePrefix("api/todos")]
-    public class TodoApiController : ApiController
-    {
 
+    //sets the api controller routeprefix 
+    [RoutePrefix("api/controller")]
+    public class ApiController : System.Web.Http.ApiController
+    {
+        //takes in two parameters, user id and name (which is what the user enters in the textfield while posting a wallpost)
+        //Adds the values into a list and saves the changes
         [Route("list/add")]
         [HttpGet]
         public void AddPost(string userId, string name)
@@ -25,6 +28,8 @@ namespace Taharifran.Controllers
             ctx.SaveChanges();
         }
 
+        //if the sender id and the receiver id already exists in the table, return badrequest
+        // otherwise add the sender id and the receiver id into a list
         [Route("friendrequests/add")]
         [HttpPost]
         public IHttpActionResult AddFriendRequest(string sender, string reciever)
@@ -55,7 +60,7 @@ namespace Taharifran.Controllers
             }
         }
 
-
+        //finds match for the receiver id and the sender id, if its not null, sets the Accepted bool to true
         [Route("acceptrequest")]
         [HttpPost]
         public IHttpActionResult AcceptFriendRequest(string sender, string reciever)
@@ -82,7 +87,7 @@ namespace Taharifran.Controllers
         }
 
 
-
+        //finds where the receiver id and the user id matches and accepted bool is false, "pending friend request"
         [Route("friendrequests")]
         [HttpGet]
         public IHttpActionResult GetFriendRequestById(string userId)
